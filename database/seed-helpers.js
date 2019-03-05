@@ -46,11 +46,11 @@ const reviewGenerator = index => {
   return Object.assign(
     {},
     {
-      review_id: index,
+      // review_id: index,
       date: faker.date.between('2018-05-01', '2019-02-20'), // 2 review.date,
       review_star_rating: randomIntGenerator(0, 5),
       review_item_rating: randomIntGenerator(1, 100),
-      comments: fakeComments,
+      comments: JSON.stringify(fakeComments),
     },
     staticReviewData
   );
@@ -85,6 +85,17 @@ const asyncSeed = async (db, collectionSize = 10000000, batchSize = 500000) => {
   }
 };
 
+const asyncSeed1 = async (db, collectionSize = 10000000, batchSize = 500000, cs, pgp) => {
+  for (let i = 0; i < collectionSize; i += batchSize) {
+    console.log('batching...', i); // eslint-disable-line
+    console.log(process.memoryUsage()); // eslint-disable-line
+
+    /* eslint-disable-next-line */
+    await db.none(pgp.helpers.insert(seed(batchSize), cs)) 
+  }
+};
+
 module.exports = {
   asyncSeed,
+  asyncSeed1
 };
