@@ -2,7 +2,7 @@
 const { MongoClient } = require('mongodb');
 const { asyncSeed } = require('./seed-mongo-helpers');
 
-const mongoUri = 'mongodb://localhost:27017';
+const mongoUri = 'mongodb://database:27017';
 
 MongoClient.connect(mongoUri, (err, client) => {
   if (err) {
