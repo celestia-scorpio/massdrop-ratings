@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3008"
+    links:
+      - database
+    volumes:
+      - .:/code
+    depends_on:
+      - database
+  database:
+    image: "mongo:3.4"
