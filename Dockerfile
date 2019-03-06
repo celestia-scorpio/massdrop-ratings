@@ -19,4 +19,4 @@ RUN npm install
 COPY . .
 EXPOSE 3008
 
-CMD [ "./start.sh" ]
+CMD [ "npm", "run", "start-server" ]
