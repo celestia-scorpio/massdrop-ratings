@@ -42,19 +42,21 @@ class App extends React.Component {
     this.getReviews(itemid, this.state.selectedOption);
   }
 
+  // .get(
+  //   `${amazon}/api/products/${itemid}/reviews?sort=${selectedOption}&like=${like}`,
+  // )
+  // .get(
+  //   `http://localhost:3008/api/products/${itemid}/reviews?sort=${selectedOption}&like=${like}`,
+  // )
   getReviews(itemid, selectedOption, like = '') {
     axios
-      .get(
-        `${amazon}/api/products/${itemid}/reviews?sort=${selectedOption}&like=${like}`,
-      )
-      // .get(
-      //   `http://localhost:3008/api/products/${itemid}/reviews?sort=${selectedOption}&like=${like}`,
-      // )
-      .then(response => {
-        this.setState({ reviews: response.data });
+      .get(`http://localhost:3008/api/products/${itemid}/reviews`)
+      .then(({ data }) => {
+        const result = [data.review];
+        this.setState({ reviews: result });
       })
       .catch(error =>
-        console.log('Error getting all reviews from DB:    ', error),
+        console.log('Error getting all reviews from DB:    ', error)
       );
   }
   changeSortOrder(e) {

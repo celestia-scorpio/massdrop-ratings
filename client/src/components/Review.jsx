@@ -83,58 +83,58 @@ class Review extends React.Component {
 
   addFollower() {
     this.setState({ isUserFollowed: !this.state.isUserFollowed });
-    // on click change state
   }
+
   render() {
     const {
       comments,
       review_author_id,
-      review_body,
+      body,
       review_date,
       review_id,
       review_item_id,
       review_rating,
-      user_avatar,
-      user_id,
-      user_isDeleted,
-      user_isHidden,
-      user_isVerified,
-      user_likesQty,
-      user_name,
+      // user_avatar,
+      // user_id,
+      // user_isDeleted,
+      // user_isHidden,
+      // user_isVerified,
+      // user_likesQty,
+      // user_name,
     } = this.props.review;
 
+    // <Style.UserW>
+    //   <div style={{ flex: 1 }}>
+    //     <Style.UserAvatar src={user_avatar} />
+    //   </div>
+    //   <Style.UserDataW style={{ flex: 4 }}>
+    //     <div>
+    //       <Style.UserName>{user_name}</Style.UserName>
+    //     </div>
+    //     <div>
+    //       <Style.UserLikesCount>{user_likesQty}</Style.UserLikesCount>
+    //     </div>
+    //     <div style={{ marginRight: 'auto' }}>
+    //       {this.state.isAdded ? (
+    //         <Style.TealGroupAdd />
+    //       ) : (
+    //         <Style.TealPersonAdd />
+    //       )}
+    //     </div>
+    //     <div>
+    //       <Style.UserDate>{timeAgo(review_date)}</Style.UserDate>
+    //     </div>
+    //   </Style.UserDataW>
+    // </Style.UserW>
+    // {user_isVerified === 1 ? (
+    //   <Style.isVerified>VERIFIED PURCHASER</Style.isVerified>
+    // ) : null}
+
+    console.log(body);
     return (
       <Style.ReviewCard>
         <Style.ReviewW>
-          <Style.UserW>
-            <div style={{ flex: 1 }}>
-              <Style.UserAvatar src={user_avatar} />
-            </div>
-            <Style.UserDataW style={{ flex: 4 }}>
-              <div>
-                <Style.UserName>{user_name}</Style.UserName>
-              </div>
-              <div>
-                <Style.UserLikesCount>{user_likesQty}</Style.UserLikesCount>
-              </div>
-              <div style={{ marginRight: 'auto' }}>
-                {this.state.isAdded ? (
-                  <Style.TealGroupAdd />
-                ) : (
-                  <Style.TealPersonAdd />
-                )}
-              </div>
-              <div>
-                <Style.UserDate>
-                  {timeAgo(JSON.parse(review_date))}
-                </Style.UserDate>
-              </div>
-            </Style.UserDataW>
-          </Style.UserW>
-          {user_isVerified === 1 ? (
-            <Style.isVerified>VERIFIED PURCHASER</Style.isVerified>
-          ) : null}
-          <Style.ReviewBody>{review_body}</Style.ReviewBody>
+          <Style.ReviewBody>{body}</Style.ReviewBody>
           <div
             onClick={() => {
               this.setState({ isEditorShown: true });

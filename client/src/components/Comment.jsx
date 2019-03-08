@@ -9,6 +9,11 @@ import { ThumbUp } from 'styled-icons/material/ThumbUp';
 import { Reply } from 'styled-icons/material/Reply';
 import { Style } from '../../../utilities/styles';
 
+const CommentContainer = styled.div`
+  display: block;
+  width: 100%;
+`;
+
 const GrayReply = styled(Reply)`
   color: #849493;
   height: 1em;
@@ -159,6 +164,7 @@ const StyledCancelButton = styled.button`
   margin-top: 8px;
   margin-left: 20px;
 `;
+
 class Comment extends React.Component {
   constructor(props) {
     super(props);
@@ -188,10 +194,13 @@ class Comment extends React.Component {
 
   render() {
     const {
+      body,
+      comment_id,
+      comment_author_name,
+      date,
       comment_author_id,
       comment_body,
       comment_date,
-      comment_id,
       comment_replied_to_id,
       comment_review_id,
       creator_avatar,
@@ -207,20 +216,20 @@ class Comment extends React.Component {
     } = this.props.comment;
 
     return (
-      <div>
+      <div style={{display: "block", width: "100%"}}>
         <div>
           <Style.UserAvatar img src={creator_avatar} />
-          <Style.UserName>{creator_name}</Style.UserName>
+          <Style.UserName>{comment_author_name}</Style.UserName>
           <Style.UserLikesCount>{creator_likesQty}</Style.UserLikesCount>
           {this.state.isAdded ? (
             <Style.TealGroupAdd />
           ) : (
             <Style.TealPersonAdd />
           )}
-          <Style.UserDate>{comment_date}</Style.UserDate>
+          <Style.UserDate>{date}</Style.UserDate>
           <br />
           <Style.UserName>{replier_name}</Style.UserName>
-          <Style.ReviewBody>{comment_body}</Style.ReviewBody>
+          <Style.ReviewBody>{body}</Style.ReviewBody>
         </div>
         <br />
         <div>

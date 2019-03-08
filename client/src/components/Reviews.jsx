@@ -4,18 +4,18 @@ import React from 'react';
 import Review from './Review.jsx';
 import { Style } from '../../../utilities/styles';
 
-const Reviews = props => {
+// submitReply={props.submitReply}
+const generateReviews = props => {
+  console.log(props.reviews);
   return (
-    <div>
-      {props.reviews.map((review, key) => (
-        <Review
-          submitReply={props.submitReply}
-          review={review}
-          key={review.review_id}
-        />
-      ))}
-    </div>
+    (props.reviews &&
+      props.reviews.map(review => (
+        <Review review={review} key={review.review_id} />
+      ))) ||
+    null
   );
 };
+
+const Reviews = props => <div>{generateReviews(props)}</div>;
 
 export default Reviews;
