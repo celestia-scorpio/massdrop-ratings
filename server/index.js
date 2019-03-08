@@ -27,7 +27,7 @@ app.get('/api/products/:itemid/reviews', (req, res) => {
 
   db.collection('reviews')
     .findOne({ _id: id })
-    .then(review => res.send(review))
+    .then(review => res.send({ review }))
     .catch(e => res.send({ err: e }));
 });
 // app.get('/api/products/:itemid/reviews', (req, res) => {
@@ -147,11 +147,13 @@ app.put(`/api/users/:userId`, (req, res) => {
 });
 
 MongoClient.connect(
-  'mongodb://localhost:27017',
-  { promiseLibrary: Promise },
+  'mongodb://35.174.113.160:27017',
+  { promiseLibrary: Promise, useNewUrlParser: true },
   (err, client) => {
     if (err) {
       console.error(`Failed to connect to the database. ${err.stack}`);
+    } else {
+      console.log('Connected to database!!');
     }
 
     app.locals.db = client.db('massdrop-reviews');
