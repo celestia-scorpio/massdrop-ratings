@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/../client/dist`));
 
+app.get('/loaderio-542e95bc816fed4e4e4814c5df92c345.html', () => {
+  res.sendFile(path.join(__dirname, '../client/dist/'));
+});
+
 // serving static file
 app.get('/products/:itemid', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
@@ -132,7 +136,7 @@ app.get('/api/products/:itemid/reviews', (req, res) => {
 
 app.put(`/api/users/:userId`, (req, res) => {
   const operation = req.query.likeType === 'plus' ? '+' : '-';
-  const userId = req.params.userId;
+  const { userId } = req.params;
   const query = `UPDATE users SET user_likesQty=user_likesQty ${operation} 1 WHERE user_id=${Number(
     userId
   )}`;
@@ -144,6 +148,15 @@ app.put(`/api/users/:userId`, (req, res) => {
       res.sendStatus(200);
     }
   });
+});
+
+app.get('*', () => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      '../client/dist/loaderio-542e95bc816fed4e4e4814c5df92c345.txt'
+    )
+  );
 });
 
 MongoClient.connect(
