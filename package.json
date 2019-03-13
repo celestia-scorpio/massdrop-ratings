@@ -8,6 +8,7 @@
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "start": "node server/index.js",
+    "seed-mongo": "node database/mongo/seed-mongo.js",
     "build": "webpack"
   },
   "repository": {
