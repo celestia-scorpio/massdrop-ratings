@@ -1,20 +1,19 @@
 // Retrieve
 const { MongoClient } = require('mongodb');
-const { asyncSeed } = require('./seed-mongo-helpers');
+const { asyncSeed } = require('../seed-helpers');
+require('dotenv').config();
 
-const mongoUri = 'mongodb://database:27017';
-
-MongoClient.connect(mongoUri, (err, client) => {
+MongoClient.connect(process.env.DB_CONN, (err, client) => {
   if (err) {
     console.error('Error: ', err); // eslint-disable-line
     client.close();
   }
 
   const db = client.db('massdrop-reviews');
-  const reviews = db.collection('reviews');
-  reviews.drop();
+  const products = db.collection('products');
+  products.drop();
 
-  asyncSeed(reviews).then(() => {
+  asyncSeed(products).then(() => {
     console.log('Database seeded!'); // eslint-disable-line
     client.close();
   });
