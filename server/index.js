@@ -6,9 +6,12 @@ const path = require('path');
 const cors = require('cors');
 // const utils = require('../utilities/utilities.js');
 // const sqlite = require('../database/connect.js');
-const port = 3008;
+const port = process.env.PORT || 3008;
 
 const app = express();
+
+// require dotenvs
+require('dotenv').config();
 
 // middleware
 app.use(cors());
@@ -161,7 +164,7 @@ app.get('*', () => {
 });
 
 MongoClient.connect(
-  'mongodb://35.174.113.160:27017',
+  process.env.DB_CONN,
   { promiseLibrary: Promise, useNewUrlParser: true },
   (err, client) => {
     if (err) {
@@ -170,9 +173,10 @@ MongoClient.connect(
       console.log('Connected to database!!');
     }
 
+    // inject database connection
     app.locals.db = client.db('massdrop-reviews');
     app.listen(port, () => {
-      console.log(`Node.js app is listening at http://localhost:${port}`);
+      console.log(`Node.js app is listening at ${process.env.HOST}:${port}`);
     });
   }
 );
