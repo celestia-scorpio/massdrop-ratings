@@ -30,8 +30,7 @@ app.get('/products/:itemid', (req, res) => {
 
 app.get('/api/products/:itemid/reviews', (req, res) => {
   const { db } = req.app.locals;
-  const id = new ObjectID(req.params.itemid);
-
+  const id = req.params.itemid;
   // item id
   db.collection('reviews')
     .findOne({ _id: id })
