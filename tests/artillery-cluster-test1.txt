@@ -1,0 +1,68 @@
+Started phase 0, duration: 20s @ 01:36:39(-0400) 2019-03-14
+Report @ 01:36:49(-0400) 2019-03-14
+Elapsed time: 10 seconds
+  Scenarios launched:  999
+  Scenarios completed: 999
+  Requests completed:  999
+  RPS sent: 100.6
+  Request latency:
+    min: 1.4
+    max: 13.7
+    median: 1.7
+    p95: 3.6
+    p99: 10.9
+  Codes:
+    200: 999
+
+Warning: 
+CPU usage of Artillery seems to be very high (pids: 28911)
+which may severely affect its performance.
+See https://artillery.io/docs/faq/#high-cpu-warnings for details.
+
+Report @ 01:36:59(-0400) 2019-03-14
+Elapsed time: 20 seconds
+  Scenarios launched:  1000
+  Scenarios completed: 1000
+  Requests completed:  1000
+  RPS sent: 100.1
+  Request latency:
+    min: 1.4
+    max: 16.1
+    median: 1.6
+    p95: 3.9
+    p99: 10.6
+  Codes:
+    200: 1000
+
+Report @ 01:36:59(-0400) 2019-03-14
+Elapsed time: 20 seconds
+  Scenarios launched:  1
+  Scenarios completed: 1
+  Requests completed:  1
+  RPS sent: 2
+  Request latency:
+    min: 1.5
+    max: 1.5
+    median: 1.5
+    p95: 1.5
+    p99: 1.5
+  Codes:
+    200: 1
+
+All virtual users finished
+Summary report @ 01:36:59(-0400) 2019-03-14
+  Scenarios launched:  2000
+  Scenarios completed: 2000
+  Requests completed:  2000
+  RPS sent: 97.75
+  Request latency:
+    min: 1.4
+    max: 16.1
+    median: 1.7
+    p95: 3.9
+    p99: 10.7
+  Scenario counts:
+    0: 2000 (100%)
+  Codes:
+    200: 2000
+

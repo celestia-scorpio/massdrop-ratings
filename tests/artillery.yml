@@ -1,0 +1,9 @@
+config:
+  target: 'http://localhost:3008'
+  phases:
+    - duration: 20
+      arrivalRate: 100
+scenarios:
+  - flow:
+    - get:
+        url: '/api/products/332/reviews'
