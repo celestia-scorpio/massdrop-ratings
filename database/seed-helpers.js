@@ -10,7 +10,7 @@ const fakeComments = JSON.stringify(
   (() => {
     const comments = [];
 
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < 2; i += 1) {
       comments.push({
         body: faker.lorem.sentence(),
         date: faker.date.between('2018-05-01', '2019-02-20'), // 2 review.date,
@@ -54,7 +54,7 @@ const documentGenerator = index => {
     _id: index,
     reviews: (() => {
       const reviews = [];
-      const numberToGenerate = randomIntGenerator(1, 10);
+      const numberToGenerate = randomIntGenerator(1, 5);
       for (let i = 0; i < numberToGenerate; i++) {
         reviews.push(reviewGenerator(i));
       }
@@ -71,7 +71,7 @@ const seed = (idx = 0, batchSize) => {
   return docs;
 };
 
-const asyncSeed = async (db, collectionSize = 10000000, batchSize = 300000) => {
+const asyncSeed = async (db, collectionSize = 10000000, batchSize = 500000) => {
   let entryIndex = 1;
 
   for (let i = 0; i < collectionSize; i += batchSize) {
