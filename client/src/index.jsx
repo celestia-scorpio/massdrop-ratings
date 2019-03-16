@@ -10,7 +10,7 @@ import Reviews from './components/Reviews.jsx';
 import Comment from './components/Comment.jsx';
 import { Style } from '../../utilities/styles.js';
 
-var amazon = 'http://ec2-18-212-192-142.compute-1.amazonaws.com';
+// var amazon = 'http://ec2-18-212-192-142.compute-1.amazonaws.com';
 
 class App extends React.Component {
   constructor(props) {
@@ -39,17 +39,18 @@ class App extends React.Component {
 
   componentDidMount() {
     let itemid = window.location.pathname.split('/')[2];
+    console.log(itemid);
     this.getReviews(itemid, this.state.selectedOption);
   }
 
-  // .get(
-  //   `http://localhost:3008/api/products/${itemid}/reviews?sort=${selectedOption}&like=${like}`,
-  // )
   getReviews(itemid, selectedOption, like = '') {
     axios
-      .get(`${amazon}/api/products/${itemid}/reviews`)
+      // .get(`http://${process.env.HOST}/api/products/${itemid}/reviews`)
+      .get(
+        `http://ec2-18-212-192-142.compute-1.amazonaws.com/api/products/${itemid}/reviews`
+      )
       .then(({ data }) => {
-        const result = [data.review];
+        const result = data.review.reviews;
         this.setState({ reviews: result });
       })
       .catch(error =>
@@ -116,4 +117,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('Reviews'));
