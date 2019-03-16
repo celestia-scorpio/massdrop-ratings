@@ -14,12 +14,11 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(`${__dirname}/../client/dist`));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/loaderio-542e95bc816fed4e4e4814c5df92c345.html', () => {
-  res.sendFile(path.join(__dirname, '../client/dist/'));
+app.get('/bundle', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/bundle.js'));
 });
-
 // serving static file
 app.get('/products/:itemid', (req, res) =>
   res.sendFile(path.join(__dirname, '../client/dist/index.html'))
@@ -35,7 +34,7 @@ app.get('/api/products/:itemid/reviews', (req, res) => {
     .catch(e => res.send({ err: e }));
 });
 
-app.get('*', () =>
+app.get('*', (req, res) =>
   res.sendFile(
     path.join(
       __dirname,
