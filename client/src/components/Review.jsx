@@ -87,14 +87,14 @@ class Review extends React.Component {
 
   render() {
     const {
-      comments,
       review_author_id,
       body,
       review_date,
       review_id,
       review_item_id,
       review_rating,
-      // user_avatar,
+      author_name,
+      author_avatar,
       // user_id,
       // user_isDeleted,
       // user_isHidden,
@@ -103,38 +103,59 @@ class Review extends React.Component {
       // user_name,
     } = this.props.review;
 
+    const comments = JSON.parse(this.props.review.comments);
+
     // <Style.UserW>
     //   <div style={{ flex: 1 }}>
-    //     <Style.UserAvatar src={user_avatar} />
+    //     <Style.UserAvatar src={author_avatar} />
     //   </div>
     //   <Style.UserDataW style={{ flex: 4 }}>
     //     <div>
-    //       <Style.UserName>{user_name}</Style.UserName>
+    //       <Style.UserName>{author_name}</Style.UserName>
     //     </div>
-    //     <div>
-    //       <Style.UserLikesCount>{user_likesQty}</Style.UserLikesCount>
-    //     </div>
-    //     <div style={{ marginRight: 'auto' }}>
-    //       {this.state.isAdded ? (
-    //         <Style.TealGroupAdd />
-    //       ) : (
-    //         <Style.TealPersonAdd />
-    //       )}
-    //     </div>
-    //     <div>
-    //       <Style.UserDate>{timeAgo(review_date)}</Style.UserDate>
-    //     </div>
+    //     // <div>
+    //       // <Style.UserLikesCount>{user_likesQty}</Style.UserLikesCount>
+    // //     </div>
+    // //     <div style={{ marginRight: 'auto' }}>
+    // //       {this.state.isAdded ? (
+    // //         <Style.TealGroupAdd />
+    // //       ) : (
+    // //         <Style.TealPersonAdd />
+    // //       )}
+    // //     </div>
+    // //     <div>
+    //       // <Style.UserDate>{timeAgo(review_date)}</Style.UserDate>
+    //     // </div>
     //   </Style.UserDataW>
     // </Style.UserW>
     // {user_isVerified === 1 ? (
     //   <Style.isVerified>VERIFIED PURCHASER</Style.isVerified>
     // ) : null}
 
-    console.log(body);
+    //
     return (
       <Style.ReviewCard>
+        <Style.UserW>
+          <div style={{ flex: 1 }}>
+            <Style.UserAvatar src={author_avatar} />
+          </div>
+          <Style.UserDataW style={{ flex: 4 }}>
+            <div>
+              <Style.UserName>{author_name}</Style.UserName>
+            </div>
+          </Style.UserDataW>
+        </Style.UserW>
         <Style.ReviewW>
           <Style.ReviewBody>{body}</Style.ReviewBody>
+          {comments &&
+            comments.length &&
+            comments.map(comment => (
+              <Comment
+                submitReply={this.props.submitReply}
+                comment={comment}
+                key={comment.comment_id}
+              />
+            ))}
           <div
             onClick={() => {
               this.setState({ isEditorShown: true });
@@ -189,14 +210,6 @@ class Review extends React.Component {
             </div>
           ) : null}
         </Style.ReviewW>
-        {comments.length &&
-          comments.map(comment => (
-            <Comment
-              submitReply={this.props.submitReply}
-              comment={comment}
-              key={comment.comment_id}
-            />
-          ))}
       </Style.ReviewCard>
     );
   }
