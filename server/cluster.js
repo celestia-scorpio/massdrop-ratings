@@ -15,6 +15,7 @@ MongoClient.connect(
   { poolSize: 10, promiseLibrary: Promise, useNewUrlParser: true },
   (err, client) => {
     if (err) {
+      log(`db conn env: ${process.env.DB_CONN}`);
       log(`Failed to connect to the database. ${err.stack}`);
     } else if (isMaster) {
       log(`Forking ${numWorkers}`);
